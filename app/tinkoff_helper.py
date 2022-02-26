@@ -1,9 +1,11 @@
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 from tinkoff.invest import Client, OperationsResponse, PortfolioResponse, OperationState
 from currency_converter import CurrencyConverter, RateNotFoundError
 from tqdm import tqdm
+from dotenv import load_dotenv
 
+load_dotenv()
 TOKEN = os.environ["INVEST_TOKEN"]
 
 
