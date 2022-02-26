@@ -9,19 +9,20 @@ load_dotenv()
 TOKEN = os.environ["INVEST_TOKEN"]
 
 
+# print(client.users.get_accounts())
+# print(client.users.get_info())
+# print(client.users.get_user_tariff())
+# print(client.market_data.get_trading_status(figi='BBG000C496P7'))
+# print(client.instruments.currencies())
+# portfolio: PortfolioResponse = client.operations.get_portfolio(account_id="2000274502")
+
+
 def get_operations(account_id: str, from_: datetime, to_: datetime) -> list[dict]:
     data: list[dict] = []
     with Client(TOKEN) as client:
-        # print(client.users.get_accounts())
-        # print(client.users.get_info())
-        # print(client.users.get_user_tariff())
-        # print(client.market_data.get_trading_status(figi='BBG000C496P7'))
-        # print(client.instruments.currencies())
         operations: OperationsResponse = client.operations.get_operations(account_id=account_id, from_=from_, to=to_,
                                                                           state=OperationState.OPERATION_STATE_EXECUTED)
         operations.operations.sort(key=lambda v: v.date, reverse=True)
-        # portfolio: PortfolioResponse = client.operations.get_portfolio(account_id="2000274502")
-
         for operation in tqdm(operations.operations):
             payment = float(f"{operation.payment.units}.{abs(operation.payment.nano)}")
             currency = operation.payment.currency
