@@ -2,7 +2,7 @@
 
 ###.env
 ```shell
-TOKEN=token
+INVEST_TOKEN=token
 DATABASE=finance
 USER=user
 PASSWORD=password
