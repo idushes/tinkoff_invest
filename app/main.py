@@ -27,6 +27,7 @@ if __name__ == '__main__':
     print(f"""
         ERRORS: {df['usd'].isna().sum()}
         START: {df['date'].min().strftime("%b %d, %Y")}
+        END: {df['date'].max().strftime("%b %d, %Y")}
         NET_INPUT: -${int(input_sum)}
         CURRENT: ${int(current_total_usd)}
         PROFFIT (USD): {int(current_total_usd - input_sum)}
