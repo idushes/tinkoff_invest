@@ -1,10 +1,10 @@
-from dotenv import load_dotenv
-load_dotenv()
+import os
 from datetime import datetime, timedelta
 from tinkoff.invest import Client, OperationsResponse, PortfolioResponse, OperationState
-from tinkoff.invest.token import TOKEN
 from currency_converter import CurrencyConverter, RateNotFoundError
 from tqdm import tqdm
+
+TOKEN = os.environ["INVEST_TOKEN"]
 
 
 def get_operations(account_id: str, from_: datetime, to_: datetime) -> list[dict]:
